@@ -1,0 +1,2 @@
+- Fix images not being imported when loading a .picno file
+- Fix styling issue when using <!DOCTYPE html>

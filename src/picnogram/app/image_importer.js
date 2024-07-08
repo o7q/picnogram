@@ -35,9 +35,6 @@ function uploadImage() {
     }
 
     function loadImage() {
-
-        console.log("u");
-
         let inputCanvas = document.getElementById("inputImage");
         let downscaledCanvas = document.getElementById("downscaledImage");
 
