@@ -1,0 +1,11 @@
+function downloadFile(outputString, filename = 'my_game.picno') {
+    const blob = new Blob([outputString], { type: 'application/xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}

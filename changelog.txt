@@ -1,3 +1,6 @@
+~ v1.0.2
+- Fixed a bug where saving a game a second time would cause the image to not save correctly
+
 ~ v1.0.1
 - Fixed bug where images would not appear when reloading a project
 - Fixed styling issue when on HTML5

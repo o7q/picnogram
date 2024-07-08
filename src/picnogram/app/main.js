@@ -70,8 +70,7 @@ function saveGame() {
     output.push(goodTiles);
 
     if (game.isImage()) {
-        let inputCanvas = document.getElementById("inputImage");
-        output.push(inputCanvas.toDataURL());
+        output.push(img.src);
     }
     else {
         output.push("null")
@@ -85,16 +84,7 @@ function saveGame() {
 
     outputString = outputString.slice(0, -1);
 
-    const defaultFilename = 'my_game.picno';
-    const blob = new Blob([outputString], { type: 'application/xml;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = defaultFilename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    downloadFile(outputString);
 }
 
 function loadGame() {
@@ -132,10 +122,10 @@ function loadGame() {
             else {
                 imagePuzzle = true;
 
-                img = new Image();
+                if (!img) {
+                    img = new Image();
+                }
                 img.src = image;
-
-                drawInput();
             }
 
             let tiles = tilesFromRaw(width, height, goodBadTiles);

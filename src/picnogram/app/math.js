@@ -4,7 +4,7 @@ const edge_detection_kernel = [
     0.25, 0, -0.25
 ];
 
-function genRandomInt(min, max, seed) {
+function genRandomInt(min, max, seed = null) {
     min = Math.ceil(min);
     max = Math.floor(max);
 
