@@ -1,0 +1,4 @@
+~ v1.0.1
+- Fixed bug where images would not appear when reloading a project
+- Fixed styling issue when on HTML5
+- Made the seed textbox less annoying

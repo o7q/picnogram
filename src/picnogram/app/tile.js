@@ -82,20 +82,20 @@ class Tile {
         let div = document.createElement("div");
         div.setAttribute("class", "tile");
         div.setAttribute("id", "tile" + index);
-        div.style.left = position.x * tileSize;
-        div.style.top = position.y * tileSize;
-        div.style.width = tileSize;
-        div.style.height = tileSize;
+        div.style.left = (position.x * tileSize) + 'px';
+        div.style.top = (position.y * tileSize) + 'px';
+        div.style.width = tileSize + 'px';
+        div.style.height = tileSize + 'px';
 
         this.state = 0;
         this.id = index;
 
         this.numberTiles = [];
 
-        div.addEventListener('mouseover', () => {
+        div.addEventListener('mouseover', (e) => {
             this.clickTile(false, false);
         }, false);
-        div.addEventListener('mousedown', () => {
+        div.addEventListener('mousedown', (e) => {
             this.clickTile(true, false);
         }, false);
         document.body.appendChild(div);
@@ -106,18 +106,18 @@ class NumberTile {
     create(number, position, tileSize, id, side) {
         let div = document.createElement("div");
         div.setAttribute("class", "tile numberTile tileText");
-        div.style.left = position.x * tileSize;
-        div.style.top = position.y * tileSize;
+        div.style.left = (position.x * tileSize) + 'px';
+        div.style.top = (position.y * tileSize) + 'px';
 
-        div.style.width = tileSize;
-        div.style.height = tileSize;
+        div.style.width = tileSize + 'px';
+        div.style.height = tileSize + 'px';
         div.style.color = "#a1a1a1";
 
         let textSpan = document.createElement("span");
         textSpan.setAttribute("class", "tileText");
         textSpan.setAttribute("id", `tileText_${side}${id}`);
         textSpan.textContent = number;
-        textSpan.style.fontSize = 25 / (50 / tileSize);
+        textSpan.style.fontSize = (25 / (50 / tileSize)) + 'px';
         div.appendChild(textSpan);
 
         this.number = number;

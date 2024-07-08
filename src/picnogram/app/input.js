@@ -18,3 +18,10 @@ document.addEventListener('mousedown', function (e) {
 document.addEventListener('mouseup', function (e) {
     MOUSE_DOWN = false;
 });
+
+function configureElementListeners() {
+    document.getElementById('seedTextBox').addEventListener('input', function(e) {
+        document.getElementById("randomizeCheckBox").checked = false;
+        updateGameSettings();
+    });
+}

@@ -6,6 +6,9 @@ let difficulty = 20;
 
 let game;
 function start() {
+    displayVersion();
+    configureElementListeners();
+
     let seedTextBox = document.getElementById("seedTextBox");
     seedTextBox.value = genRandomInt(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER, null);
 
@@ -17,13 +20,19 @@ function start() {
     game.start(width, height, tiles, false);
 }
 
+document.addEventListener("DOMContentLoaded", (event) => {
+    start();
+});
+
 function createGameFromSeed() {
+    updateGameSettings();
+
     if (randomizeSeed) {
         let seedTextBox = document.getElementById("seedTextBox");
-        seedTextBox.value = genRandomInt(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER, null);
+        let randSeed = genRandomInt(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER, null);
+        seedTextBox.value = randSeed;
+        seed = randSeed;
     }
-
-    updateGameSettings();
 
     let tiles = tilesFromSeed(width, height, seed, difficulty);
     game.start(width, height, tiles, false);
@@ -125,6 +134,8 @@ function loadGame() {
 
                 img = new Image();
                 img.src = image;
+
+                drawInput();
             }
 
             let tiles = tilesFromRaw(width, height, goodBadTiles);
@@ -137,10 +148,6 @@ function loadGame() {
             for (let y = 0; y < height; y++) {
                 for (let x = 0; x < width; x++) {
                     let index = get1DIndex(x, y, width);
-                    // if (modifiedTiles[index] == 2 || modifiedTiles[index] == 3)
-                    // {
-                    //     game.tiles[index].clickTile(true);
-                    // }
                     switch (modifiedTiles[index]) {
                         case "2":
                         case "3":

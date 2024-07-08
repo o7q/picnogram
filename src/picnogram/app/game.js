@@ -45,8 +45,8 @@ class Game {
         textSpan.setAttribute("class", "tileText statsText");
         textSpan.setAttribute("id", `statsText`);
         textSpan.textContent = "Correct: # | Wrong: # | Left: #";
-        textSpan.style.left = this.paddingX * this.tileSize;
-        textSpan.style.top = (this.height + this.paddingY) * this.tileSize;
+        textSpan.style.left = (this.paddingX * this.tileSize) + 'px';
+        textSpan.style.top = ((this.height + this.paddingY) * this.tileSize) + 'px';
         document.body.appendChild(textSpan);
     }
 
@@ -240,10 +240,10 @@ class Game {
         const completedWidth = this.width * this.tileSize;
         const completedHeight = this.height * this.tileSize;
 
-        confetti.style.left = this.paddingX * this.tileSize;
-        confetti.style.top = this.paddingY * this.tileSize;
-        confetti.style.width = `${completedWidth}px`;
-        confetti.style.height = `${completedHeight}px`;
+        confetti.style.left = (this.paddingX * this.tileSize) + 'px';
+        confetti.style.top = (this.paddingY * this.tileSize) + 'px';
+        confetti.style.width = completedWidth + 'px';
+        confetti.style.height = completedHeight + 'px';
         confetti.classList.remove('fade-out');
         confetti.style.display = 'block';
 
@@ -274,18 +274,18 @@ class Game {
         const stepWidth = (completedWidth - this.width) / steps;
         const stepHeight = (completedHeight - this.height) / steps;
 
-        confetti.style.left = this.paddingX * this.tileSize;
-        confetti.style.top = this.paddingY * this.tileSize;
-        confetti.style.width = `${completedWidth}px`;
-        confetti.style.height = `${completedHeight}px`;
+        confetti.style.left = (this.paddingX * this.tileSize) + 'px';
+        confetti.style.top = (this.paddingY * this.tileSize) + 'px';
+        confetti.style.width = completedWidth + 'px';
+        confetti.style.height = completedHeight + 'px';
         confetti.classList.remove('fade-out');
         confetti.style.display = 'block';
 
         completedCanvas.width = completedWidth;
         completedCanvas.height = completedHeight;
 
-        completedCanvas.style.left = this.paddingX * this.tileSize;
-        completedCanvas.style.top = this.paddingY * this.tileSize;
+        completedCanvas.style.left = (this.paddingX * this.tileSize) + 'px';
+        completedCanvas.style.top = (this.paddingY * this.tileSize) + 'px';
 
         completedContext.imageSmoothingEnabled = false;
 

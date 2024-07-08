@@ -35,20 +35,11 @@ function uploadImage() {
     }
 
     function loadImage() {
-        let inputCanvas = document.getElementById("inputImage");
+        drawInput();
+
         let downscaledCanvas = document.getElementById("downscaledImage");
 
-
-        let inputContext = inputCanvas.getContext("2d");
         let downscaledContext = downscaledCanvas.getContext("2d");
-
-        let canvasWidth = clamp(img.width, 1, 1000);
-        let canvasHeight = canvasWidth * (img.height / img.width);
-
-        inputCanvas.width = canvasWidth;
-        inputCanvas.height = canvasHeight;
-
-        inputContext.drawImage(img, 0, 0, canvasWidth, canvasHeight);
 
         downscaledCanvas.width = width;
         downscaledCanvas.height = height;
@@ -62,4 +53,18 @@ function uploadImage() {
 
         game.start(width, height, tiles, true);
     }
+}
+
+function drawInput()
+{
+    let inputCanvas = document.getElementById("inputImage");
+    let inputContext = inputCanvas.getContext("2d");
+
+    let canvasWidth = clamp(img.width, 1, 1000);
+    let canvasHeight = canvasWidth * (img.height / img.width);
+
+    inputCanvas.width = canvasWidth;
+    inputCanvas.height = canvasHeight;
+
+    inputContext.drawImage(img, 0, 0, canvasWidth, canvasHeight);
 }
