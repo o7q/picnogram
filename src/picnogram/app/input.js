@@ -20,8 +20,12 @@ document.addEventListener('mouseup', function (e) {
 });
 
 function configureElementListeners() {
-    document.getElementById('seedTextBox').addEventListener('input', function(e) {
+    document.getElementById('seedTextBox').addEventListener('input', function (e) {
         document.getElementById("randomizeCheckBox").checked = false;
         updateGameSettings();
     });
+
+    document.oncontextmenu = function (e) {
+        return false;
+    }
 }
