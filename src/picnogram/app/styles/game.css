@@ -1,0 +1,46 @@
+.tile {
+    width: 20px;
+    height: 20px;
+
+    background-color: rgb(255, 255, 255);
+
+    border: 0.5px solid rgb(82, 82, 82);
+    box-sizing: border-box;
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 20%;
+}
+
+.numberTile {
+    border: 0.5px dashed rgb(83, 83, 83);
+    background-color: rgb(43, 43, 43);
+    border-radius: 100%;
+}
+
+.tileText {
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    font-family: "Lucida Console";
+}
+
+.statsText {
+    position: absolute;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    font-family: "Lucida Console";
+}
+
+.completedCanvas {
+    position: absolute;
+    z-index: 1;
+}
+
+.completedConfetti {
+    position: absolute;
+    z-index: 2;
+    display: none;
+}

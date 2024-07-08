@@ -1,0 +1,62 @@
+body {
+    padding: 0px;
+    margin: 0px;
+
+    background-color: rgb(24, 24, 24);
+
+    user-select: none;
+}
+
+.title {
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    font-family: "Lucida Console";
+    margin-top: 40px;
+}
+
+.fileInput {
+    color: white;
+    background-color: #363636;
+    font-family: "Lucida Console";
+    padding: 0px 0px;
+    text-decoration: none;
+    margin: 4px 0px;
+    border-radius: 10px;
+}
+
+.button {
+    color: white;
+    background-color: #1a835b;
+    font-family: "Lucida Console";
+    border: none;
+    border-radius: 10px;
+    padding: 8px 10px;
+    margin: 4px 0px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.container {
+    width: 360px;
+    padding: 10px;
+    background-color: rgb(36, 36, 36);
+    border-radius: 20px;
+}
+
+.text {
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    font-family: "Lucida Console";
+}
+
+.medium-text {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    font-family: "Lucida Console";
+}
+
+.large-text {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-family: "Lucida Console";
+}

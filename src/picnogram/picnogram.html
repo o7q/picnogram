@@ -1,0 +1,103 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>picnogram</title>
+
+    <link rel="icon" type="image/png" href="app/favicon.png">
+
+    <link rel="stylesheet" href="app/styles/main.css">
+    <link rel="stylesheet" href="app/styles/game.css">
+    <link rel="stylesheet" href="app/styles/macros.css">
+
+    <script src="app/main.js"></script>
+    <script src="app/game.js"></script>
+    <script src="app/tile.js"></script>
+    <script src="app/tile_factory.js"></script>
+    <script src="app/math.js"></script>
+    <script src="app/input.js"></script>
+    <script src="app/image_processors/quantize.js"></script>
+    <script src="app/image_processors/edge_detect.js"></script>
+    <script src="app/image_importer.js"></script>
+</head>
+
+<body onload="start()">
+    <br>
+
+    <div class="container left">
+        <span class="title">picnogram</span><span class="text"> v1.0.0</span>
+    </div>
+
+    <br>
+
+    <div class="container left">
+        <p class="large-text">New Game</p>
+
+        <label for="widthTextBox" class="text">Width:</label>
+        <input type="text" id="widthTextBox" name="widthTextBox" value="10" size="2" required minlength="1" />
+        <label for="heightTextBox" class="text">Height:</label>
+        <input type="text" id="heightTextBox" name="heightTextBox" value="10" size="2" required minlength="1" />
+
+        <br>
+        <br>
+
+        <p class="medium-text">Generate From Seed</p>
+
+        <label for="seedTextBox" class="text">Seed:</label>
+        <input type="text" id="seedTextBox" name="seedTextBox" value="10" size="1" required minlength="1" />
+
+        <input type="checkbox" id="randomizeCheckBox" name="scales" checked />
+        <label for="randomizeCheckBox" class="text">Randomize</label>
+
+        <br>
+
+        <label for="difficultyTextBox" class="text">Difficulty (0 - 100):</label>
+        <input type="text" id="difficultyTextBox" name="difficultyTextBox" value="20" size="1" required minlength="1" />
+
+        <br>
+
+        <button class="button" onclick='createGameFromSeed();'>Generate</button>
+
+        <p class="large-text">OR</p>
+
+        <p class="medium-text">Generate from Image</p>
+        <input type='file' id='imageFile' class="fileInput" />
+
+        <br>
+
+        <button class="button" onclick='createGameFromImage();'>Generate</button>
+
+        <div class="left">
+            <canvas id="inputImage" class="hide"></canvas>
+            <canvas id="downscaledImage" class="hide"></canvas>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="container left">
+        <p class="large-text">Load Game</p>
+
+        <p class="text">From (.picno) file</p>
+        <input type='file' id='loadGameFile' class="fileInput" />
+        <input type='button' value='Load' class="button" onclick='loadGame();' />
+    </div>
+
+    <br>
+
+    <div class="container left">
+        <p class="large-text">Save Game</p>
+
+        <p class="text">To (.picno) file</p>
+        <button id='loadImageButton' class="button" onclick='saveGame();'>Save</button>
+    </div>
+
+    <br>
+
+    <canvas id="completedTemp" class="hide"></canvas>
+    <canvas id="completedImage" class="completedCanvas"></canvas>
+    <img src="app/images/confetti.gif" id="confettiGif" class="completedConfetti" draggable="false">
+</body>
+
+</html>

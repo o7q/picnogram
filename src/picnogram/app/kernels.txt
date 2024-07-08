@@ -1,0 +1,5 @@
+edge detection 
+from 3b1b: https://youtu.be/KuXjwB4LzSA?t=653
+0.25 0 -0.25
+0.50 0 -0.50
+0.25 0 -0.25
