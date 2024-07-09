@@ -1,6 +1,11 @@
 function image_quantize(pix) {
     let preset = [];
 
+    let count0 = 0;
+    let count255 = 0;
+
+    let quantizedImage = [];
+
     for (let i = 0; i < pix.length; i += 4) {
         let average = (
             pix[i] +
@@ -8,13 +13,31 @@ function image_quantize(pix) {
             pix[i + 2]
         ) / 3;
 
-        let quantized_value = quantize(average, [0, 255]);
+        let quantizedPixel = quantize(average, [0, 255]);
 
-        for (let j = 0; j < 3; j++) {
-            pix[i + j] = quantized_value;
+        if (quantizedPixel === 0) {
+            count0++;
+        }
+        else {
+            count255++;
         }
 
-        preset.push(quantized_value);
+        quantizedImage.push(quantizedPixel);
+    }
+
+    for (let i = 0; i < pix.length; i += 4) {
+        let j = i / 4;
+
+        let outputPixel = quantizedImage[j];
+        if (count0 > count255) {
+            outputPixel = outputPixel == 0 ? 255 : 0;
+        }
+
+        pix[i] = outputPixel;
+        pix[i + 1] = outputPixel;
+        pix[i + 2] = outputPixel;
+
+        preset.push(outputPixel);
     }
 
     return preset;

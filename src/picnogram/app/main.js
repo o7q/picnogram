@@ -3,6 +3,7 @@ let height = 10;
 let seed = 0;
 let randomizeSeed = true;
 let difficulty = 20;
+let algorithm = "quantize";
 
 let game;
 function start() {
@@ -52,6 +53,7 @@ function saveGame() {
     output.push(seed);
     output.push(randomizeSeed);
     output.push(difficulty);
+    output.push(algorithm);
 
     let boardState = "";
     let tiles = game.getTiles();
@@ -110,9 +112,10 @@ function loadGame() {
             seed = gameFile[2];
             randomizeSeed = gameFile[3];
             difficulty = gameFile[4];
-            let modifiedTiles = gameFile[5].split('|');
-            let goodBadTiles = gameFile[6].split('|');
-            let image = gameFile[7];
+            algorithm = gameFile[5];
+            let modifiedTiles = gameFile[6].split('|');
+            let goodBadTiles = gameFile[7].split('|');
+            let image = gameFile[8];
 
             let imagePuzzle;
 
@@ -160,6 +163,7 @@ function updateGameSettings() {
     seed = parseInt(document.getElementById("seedTextBox").value, 10);
     randomizeSeed = document.getElementById("randomizeCheckBox").checked;
     difficulty = parseInt(document.getElementById("difficultyTextBox").value, 10);
+    algorithm = document.getElementById("algorithmSelect").value;
 }
 
 function updateUI() {
@@ -168,4 +172,5 @@ function updateUI() {
     document.getElementById("seedTextBox").value = seed;
     document.getElementById("randomizeCheckBox").checked = randomizeSeed == "true" ? true : false;
     document.getElementById("difficultyTextBox").value = difficulty;
+    document.getElementById("algorithmSelect").value = algorithm;
 }

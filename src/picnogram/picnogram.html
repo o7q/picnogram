@@ -21,6 +21,7 @@
     <script src="app/math.js"></script>
     <script src="app/input.js"></script>
     <script src="app/image_processors/quantize.js"></script>
+    <script src="app/image_processors/dither.js"></script>
     <script src="app/image_processors/edge_detect.js"></script>
     <script src="app/image_importer.js"></script>
 </head>
@@ -67,14 +68,25 @@
         <p class="medium-text">Generate from Image</p>
         <input type='file' id='imageFile' class="fileInput" />
 
+        <form>
+            <label for="algorithmSelect" class="text">Algorithm:</label>
+            <select name="algorithmSelect" id="algorithmSelect">
+                <option value="quantize">Quantize</option>
+                <option value="dither">Dither</option>
+                <option value="edge_detect">Edge Detect</option>
+            </select>
+            <a class="medium-text" style="cursor: pointer;"
+                onclick="window.alert('Quantize: Works well with most puzzles, does not contain a lot of detail\n\nDither: Best for larger puzzles, provides a lot of detail for more complex images\n\nEdge Detect: Not recommended for most images, sometimes creates terrifying results');">?</a>
+        </form>
+
         <br>
 
         <button class="button" onclick='createGameFromImage();'>Generate</button>
 
-        <div class="left">
-            <canvas id="inputImage" class="hide"></canvas>
-            <canvas id="downscaledImage" class="hide"></canvas>
-        </div>
+<br>
+
+        <canvas id="downscaledImage" class="left" width="0" height="0"></canvas>
+        <canvas id="processedImage" class="left" width="0" height="0"></canvas>
     </div>
 
     <br>

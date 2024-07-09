@@ -1,7 +1,13 @@
-const edge_detection_kernel = [
+const horizontal_edge_detection_kernel = [
     0.25, 0, -0.25,
     0.50, 0, -0.50,
     0.25, 0, -0.25
+];
+
+const vertical_edge_detection_kernel = [
+    0.25, 0.50, 0.25,
+    0, 0, 0,
+    -0.25, -0.50, -0.25
 ];
 
 function genRandomInt(min, max, seed = null) {
@@ -9,12 +15,10 @@ function genRandomInt(min, max, seed = null) {
     max = Math.floor(max);
 
     let rand;
-    if (seed == null)
-    {
+    if (seed == null) {
         rand = Math.random();
     }
-    else
-    {
+    else {
         rand = splitmix32(seed);
     }
 

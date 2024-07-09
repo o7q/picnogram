@@ -38,15 +38,25 @@ function uploadImage() {
         let downscaledCanvas = document.getElementById("downscaledImage");
         let downscaledContext = downscaledCanvas.getContext("2d");
 
+        let processedCanvas = document.getElementById("processedImage");
+        let processedContext = processedCanvas.getContext("2d");
+
         downscaledCanvas.width = width;
         downscaledCanvas.height = height;
+
+        processedCanvas.width = width;
+        processedCanvas.height = height;
 
         downscaledContext.drawImage(img, 0, 0, width, height);
 
         let imageData = downscaledContext.getImageData(0, 0, width, height);
         let imagePixelData = imageData.data;
 
-        let tiles = tilesFromImage(width, height, imagePixelData);
+        let algorithm = document.getElementById("algorithmSelect").value;
+
+        let tiles = tilesFromImage(width, height, imagePixelData, algorithm);
+
+        processedContext.putImageData(imageData, 0, 0);
 
         game.start(width, height, tiles, true);
     }

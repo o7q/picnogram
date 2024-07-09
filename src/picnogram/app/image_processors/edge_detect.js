@@ -29,7 +29,6 @@ function image_edge_detect(pix) {
 
         for (let kernel_y = 0; kernel_y < kernelHeight; kernel_y++) {
             for (let kernel_x = 0; kernel_x < kernelWidth; kernel_x++) {
-
                 let index2d = get2DIndex(i / 4, width);
 
                 let yIndex = Math.min(
@@ -41,13 +40,13 @@ function image_edge_detect(pix) {
                     width - 1
                 );
 
-
                 let rgbPixel = quantizedImage[get1DIndex(xIndex, yIndex, width) * 4];
-                let multiplier = edge_detection_kernel[get1DIndex(kernel_x, kernel_y, kernelWidth)];
+                let horizontalMultiplier = horizontal_edge_detection_kernel[get1DIndex(kernel_x, kernel_y, kernelWidth)];
+                let verticalMultiplier = vertical_edge_detection_kernel[get1DIndex(kernel_x, kernel_y, kernelWidth)];
 
-                convolution_r += quantizedImage[rgbPixel] * multiplier;
-                convolution_g += quantizedImage[rgbPixel + 1] * multiplier;
-                convolution_b += quantizedImage[rgbPixel + 2] * multiplier;
+                convolution_r += quantizedImage[rgbPixel] * horizontalMultiplier + quantizedImage[rgbPixel] * verticalMultiplier;
+                convolution_g += quantizedImage[rgbPixel + 1] * horizontalMultiplier + quantizedImage[rgbPixel + 1] * verticalMultiplier;
+                convolution_b += quantizedImage[rgbPixel + 2] * horizontalMultiplier + quantizedImage[rgbPixel + 2] * verticalMultiplier;
             }
         }
 
@@ -59,6 +58,11 @@ function image_edge_detect(pix) {
 
     let preset = [];
 
+    let finalImage = [];
+
+    let count0 = 0;
+    let count255 = 0;
+
     for (let i = 0; i < edgeDetectedImage.length; i += 4) {
         let average = (
             edgeDetectedImage[i] +
@@ -66,13 +70,34 @@ function image_edge_detect(pix) {
             edgeDetectedImage[i + 2]
         ) / 3;
 
-        let average0255 = quantize(average * 255, [0, 255]);
+        let average0255 = quantize(average * (255.0 / 2.0), [0, 255]);
 
-        for (let j = 0; j < 3; j++) {
-            pix[i + j] = average0255;
+        if (average0255 == 0) {
+            count0++;
+        }
+        else {
+            count255++;
         }
 
-        preset.push(average0255);
+        pix[i] = average0255;
+        pix[i + 1] = average0255;
+        pix[i + 2] = average0255;
+
+        finalImage.push(average0255);
     }
+
+    for (let i = 0; i < finalImage.length; i++) {
+        let outputPixel = finalImage[i];
+        if (count0 > count255) {
+            outputPixel = outputPixel == 0 ? 255 : 0;
+        }
+
+        pix[i * 4] = outputPixel;
+        pix[i * 4 + 1] = outputPixel;
+        pix[i * 4 + 2] = outputPixel;
+
+        preset.push(outputPixel);
+    }
+
     return preset;
 }
